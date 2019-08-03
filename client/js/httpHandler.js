@@ -11,13 +11,32 @@
   // Note: remember to fix the URL below.
   /////////////////////////////////////////////////////////////////////
 
+
+  const ajaxGetMovement = () => {
+    $.ajax({
+      type: 'GET',
+      url: serverUrl,
+      // cache: false,
+      // contentType: false,
+      // processData: false,
+      success: (res) => {
+        // reload the page
+        console.log(res)
+        SwimTeam.move(res)
+        // window.location = window.location.href;
+      },
+      error: () => console.log('error')
+    });
+  };
+
+
   const ajaxFileUplaod = (file) => {
     var formData = new FormData();
     formData.append('file', file);
     $.ajax({
       type: 'POST',
       data: formData,
-      url: 'FILL_ME_IN',
+      url: serverUrl,
       cache: false,
       contentType: false,
       processData: false,
@@ -27,6 +46,8 @@
       }
     });
   };
+
+
 
   $('form').on('submit', function(e) {
     e.preventDefault();
@@ -45,5 +66,11 @@
 
     ajaxFileUplaod(file);
   });
-
+  $(document).on('click',(e)=> {
+    e.stopImmediatePropagation();
+    ajaxGetMovement()
+  })
 })();
+
+
+

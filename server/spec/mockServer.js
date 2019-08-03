@@ -27,9 +27,9 @@ var request = function(url, method, postdata) {
 };
 
 var response = function() {
-  this._ended = false;
-  this._responseCode = null;
-  this._headers = null;
+  this._ended = false; //true
+  this._responseCode = null; //200
+  this._headers = null; //cors.json
   this._data = Buffer.alloc(0);
 
   this.on = this.once = this.emit = ()=>{};

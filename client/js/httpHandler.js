@@ -12,22 +12,25 @@
   /////////////////////////////////////////////////////////////////////
 
 
-  const ajaxGetMovement = () => {
+  const ajaxGetMovement = (url = serverUrl) => {
     $.ajax({
       type: 'GET',
-      url: serverUrl,
+      url: url,
       // cache: false,
       // contentType: false,
       // processData: false,
       success: (res) => {
         // reload the page
-        console.log(res)
-        SwimTeam.move(res)
-        // window.location = window.location.href;
+        //console.log(res)
+        if (typeof res === 'string') {
+          SwimTeam.move(res)
+        }
       },
       error: () => console.log('error')
     });
   };
+  setInterval(() => ajaxGetMovement(), 100);
+
 
 
   const ajaxFileUplaod = (file) => {
@@ -66,10 +69,11 @@
 
     ajaxFileUplaod(file);
   });
-  $(document).on('click',(e)=> {
-    e.stopImmediatePropagation();
-    ajaxGetMovement()
-  })
+  // $(document).on('click',(e)=> {
+  //   e.stopImmediatePropagation();
+  //   ajaxGetMovement()
+  // })
+  ajaxGetMovement()
 })();
 
 

@@ -16,12 +16,8 @@
     $.ajax({
       type: 'GET',
       url: url,
-      // cache: false,
-      // contentType: false,
-      // processData: false,
       success: (res) => {
         // reload the page
-        //console.log(res)
         if (typeof res === 'string') {
           SwimTeam.move(res)
         }
@@ -39,7 +35,7 @@
     $.ajax({
       type: 'POST',
       data: formData,
-      url: serverUrl,
+      url: '/background.jpg',
       cache: false,
       contentType: false,
       processData: false,
